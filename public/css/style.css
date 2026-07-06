@@ -1,0 +1,668 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=UnifrakturMaguntia&family=Cinzel:wght@700&display=swap');
+
+:root {
+  --font-display: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-text: "Lora", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-gothic: "UnifrakturMaguntia", ui-serif, serif;
+  --font-roman: "Cinzel", serif;
+
+  --bg-color: #f5f0e6;
+  /* Tom mais rico de papel antigo */
+  --bg-texture: #e9e0d1;
+  --text-primary: #1a1816;
+  /* Chumbo profundo, quase preto, comum em nanquim */
+  --text-secondary: #4a3c31;
+  --border-color: #2c2825;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-text);
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Efeito de Papel Envelhecido Premium (SVG Data URI) */
+.newspaper-texture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0),
+    radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 0),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  background-size: 8px 8px, 4px 4px, 200px 200px;
+  background-position: 0 0, 4px 4px, 0 0;
+}
+
+::selection {
+  background: rgba(139, 115, 85, 0.4);
+  color: #000;
+}
+
+/* Navigation Superior Discreta */
+.top-nav {
+  position: sticky;
+  top: 0;
+  background-color: rgba(245, 240, 230, 0.95);
+  backdrop-filter: blur(4px);
+  border-bottom: 3px double var(--border-color);
+  z-index: 50;
+  padding: 0.3rem 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.top-nav.nav-hidden {
+  transform: translateY(-100%);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-roman);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.nav-jornal-title {
+  font-family: var(--font-roman);
+}
+
+.archive-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 0.3rem 0.8rem;
+  font-family: var(--font-roman);
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.archive-btn:hover {
+  background-color: var(--border-color);
+  color: var(--bg-color);
+}
+
+/* Container Principal - Diagramação Broadsheet */
+.newspaper-container {
+  max-width: 1100px;
+  /* Largura clássica de jornal */
+  margin: 1rem auto;
+  padding: 0 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
+  background-color: var(--bg-color);
+}
+
+@media (min-width: 768px) {
+  .newspaper-container {
+    margin: 2rem auto;
+    padding: 0 2rem;
+  }
+}
+
+/* Cabeçalho do Jornal */
+.newspaper-header {
+  border-bottom: 6px double var(--border-color);
+  border-top: 6px double var(--border-color);
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .newspaper-header {
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Filete fino interno */
+.newspaper-header::before,
+.newspaper-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.newspaper-header::before {
+  top: 2px;
+}
+
+.newspaper-header::after {
+  bottom: 2px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-family: var(--font-roman);
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .header-top {
+    font-size: 0.9rem;
+    flex-wrap: nowrap;
+  }
+}
+
+.main-title {
+  font-family: var(--font-gothic);
+  font-size: clamp(3rem, 10vw, 7.5rem);
+  line-height: 0.9;
+  margin: 0.5rem 0;
+  letter-spacing: -0.01em;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+  transform: scaleY(1.1);
+  /* Alongamento clássico de letreiro */
+  word-wrap: break-word;
+}
+
+.header-bottom {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-roman);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .header-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    text-align: left;
+  }
+}
+
+.slogan {
+  font-style: italic;
+  font-family: var(--font-display);
+  text-transform: none;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+
+/* Conteúdo em Grelha */
+.newspaper-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .newspaper-content {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+/* Separadores Verticais e Horizontais Clássicos */
+.article {
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 2rem;
+}
+
+.col-left {
+  grid-column: span 1;
+}
+
+.col-right {
+  grid-column: span 1;
+  border-top: 2px solid var(--border-color);
+  padding-top: 2rem;
+}
+
+@media (min-width: 900px) {
+  .col-left {
+    grid-column: span 8;
+    padding-right: 2rem;
+    border-right: 2px solid var(--border-color);
+  }
+
+  .col-right {
+    grid-column: span 4;
+    border-top: none;
+    padding-top: 0;
+    padding-left: 1rem;
+  }
+}
+
+/* Títulos de Seção */
+.section-heading {
+  font-family: var(--font-roman);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 3px double var(--border-color);
+  border-top: 3px double var(--border-color);
+  padding: 0.5rem 0;
+  margin-bottom: 1.5rem;
+}
+
+/* Cartuns */
+.cartoon-section {
+  margin-top: 4rem;
+  padding: 2rem;
+  border: 4px solid var(--border-color);
+  outline: 2px solid var(--border-color);
+  outline-offset: 4px;
+  background-color: var(--bg-texture);
+}
+
+.cartoon-item {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.cartoon-item:last-child {
+  margin-bottom: 0;
+}
+
+.cartoon-title {
+  font-family: var(--font-gothic);
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cartoon-artist {
+  font-family: var(--font-roman);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+/* Secões Laterais (Sidebars) */
+.side-section {
+  margin-bottom: 3rem;
+}
+
+/* Notícias Curtas / Telegramas */
+.news-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(44, 40, 37, 0.3);
+}
+
+.news-scope {
+  font-family: var(--font-roman);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.news-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.news-content {
+  font-size: 0.95rem;
+  text-align: justify;
+}
+
+/* Classificados */
+.classified-item {
+  border: 2px solid var(--border-color);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.class-cat {
+  font-family: var(--font-roman);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.class-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+}
+
+.class-desc {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+  font-style: italic;
+}
+
+.class-contact {
+  font-family: var(--font-roman);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.class-price {
+  font-family: var(--font-display);
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Obituários */
+.obituaries {
+  margin-top: 2rem;
+}
+
+.obituary-item {
+  border: 1px solid var(--border-color);
+  border-top: 3px double var(--border-color);
+  border-bottom: 3px double var(--border-color);
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.obituary-photo {
+  width: 90px;
+  height: auto;
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  border: 2px solid var(--border-color);
+  filter: grayscale(100%) sepia(80%) contrast(1.2) brightness(0.9);
+}
+
+.obituary-text {
+  font-family: var(--font-roman);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.obituary-details {
+  clear: both;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-color);
+  font-size: 0.85rem;
+  font-family: var(--font-roman);
+  color: var(--text-secondary);
+}
+
+.obituary-details p {
+  margin: 4px 0;
+}
+
+.article-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.article-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.article-meta {
+  font-family: var(--font-roman);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.article-meta::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-color);
+  margin-left: 1rem;
+}
+
+/* Colunas de Texto Internas (Layout de Jornal) */
+.article-body {
+  text-align: justify;
+  hyphens: auto;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 600px) {
+  .article-body {
+    text-align: left;
+    hyphens: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .columns-2 {
+    column-count: 2;
+    column-gap: 2rem;
+    column-rule: 1px solid rgba(44, 40, 37, 0.3);
+  }
+}
+
+.article-body p {
+  margin-bottom: 1.2rem;
+  text-indent: 1.5rem;
+  /* Recuo tradicional de parágrafo */
+}
+
+.article-body p.drop-cap {
+  text-indent: 0;
+}
+
+/* Capitular (Drop Cap) Ornamentada */
+.drop-cap::first-letter {
+  float: left;
+  font-size: 5.5rem;
+  line-height: 0.8;
+  padding: 0.4rem 0.5rem 0.1rem 0;
+  margin: 0.2rem 0.3rem -0.2rem 0;
+  font-family: var(--font-roman);
+  font-weight: 700;
+  color: var(--bg-color);
+  background-color: var(--text-primary);
+  border: 2px solid var(--text-primary);
+  text-shadow: none;
+  border-radius: 2px;
+}
+
+/* Tratamento Fotográfico Vintage (Noir/Halftone) */
+.image-noir {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%) contrast(150%) brightness(85%) sepia(40%);
+  mix-blend-mode: multiply;
+  border: 4px solid var(--bg-color);
+  outline: 2px solid var(--border-color);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.8rem;
+  transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+.image-noir:hover {
+  transform: scale(1.015);
+  filter: grayscale(80%) contrast(160%) brightness(90%) sepia(30%);
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.image-caption {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Ornamentos Extras */
+.ornament-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  grid-column: 1 / -1;
+}
+
+.ornament-separator::before,
+.ornament-separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.ornament-separator span {
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  color: var(--border-color);
+}
+
+/* Rodapé */
+.newspaper-footer {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  border-top: 6px double var(--border-color);
+  text-align: center;
+  font-family: var(--font-roman);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Modal do Acervo (Efeito Clássico) */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(26, 24, 22, 0.85);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: var(--bg-texture);
+  padding: 1.5rem 1rem;
+  width: 95%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 2px solid var(--border-color);
+  outline: 1px solid var(--bg-color);
+  outline-offset: -4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .modal-content {
+    padding: 3rem 2rem;
+    border: 4px solid var(--border-color);
+    outline: 2px solid var(--bg-color);
+    outline-offset: -8px;
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2.5rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  color: var(--border-color);
+  transition: color 0.2s;
+}
+
+.close-modal:hover {
+  color: #8b0000;
+}
+
+.editions-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.editions-list li {
+  border: 1px solid var(--border-color);
+  padding: 1.2rem;
+  cursor: pointer;
+  background-color: var(--bg-color);
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-display);
+}
+
+.editions-list li:hover {
+  background-color: var(--border-color);
+  color: var(--bg-color);
+}
+
+.editions-list li:hover .ed-date {
+  color: var(--bg-color);
+}
+
+.ed-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.ed-date {
+  font-style: italic;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,29 @@
+{
+  "id": "2026-1",
+  "status": "published",
+  "number": 1,
+  "dateStr": "Domingo, 05 de Julho de 2026",
+  "title": "A CRÔNICA ILUSTRADA",
+  "slogan": "A Sentinella das Liberdades e o Espelho do Progresso Nacional",
+  "price": "Cem Réis",
+  "articles": [
+    {
+      "title": "Entre Tarifas e Diplomacia",
+      "subtitle": " A Missão Brasileira em Terras Americanas",
+      "author": "Wandeson Ricardo",
+      "dropcap": "C",
+      "illustrationUrl": "data/editions/2026/1/assets/img-1783260606566-301783941.png",
+      "illustrationCaption": "À esquerda senador e candidato Flávio Bolsonaro, à direita o atual presidente Lula. [Reprodução. Fonte: Internet]",
+      "content": [
+        "Chegam dos Estados Unidos notícias que despertam natural interesse nos meios políticos e comerciais do país. Em ocasião de manifesta relevância para as relações entre as duas nações, o senador Flávio Bolsonaro aportou em solo norte-americano, onde deverá tomar parte em audiência pública convocada pelo Escritório do Representante de Comércio dos Estados Unidos (USTR), destinada a examinar a proposta de instituição de uma tarifa adicional de 25% sobre produtos brasileiros.",
+        "Enquanto em Washington se preparam os debates que antecederão a deliberação das autoridades americanas, o Governo brasileiro prossegue em diligentes entendimentos com representantes da administração dos Estados Unidos, buscando preservar os canais de diálogo e afastar a possibilidade de novas restrições ao intercâmbio comercial entre os dois países.",
+        "Não se trata de questão de diminuta monta, as relações econômicas entre Brasil e Estados Unidos, estas figuram entre as mais relevantes do continente, razão pela qual qualquer alteração no regime tarifário poderá repercutir sobre diversos ramos da produção e da economia nacional. Além destas percebe-se também sutilmente impacto no cenário político em pleno ano eleitoral causando burburinhos e suposições sobre reais intenções envolvidas.",
+        "Assim, entre conferências, negociações e prudentes tratativas, aguarda-se o pronunciamento definitivo das autoridades norte-americanas. Enquanto um desfecho não é dado permanece as expectativas d'uma resolução diplomática que preservem o espírito de cooperação entre as nações e assegurem os interesses  brasileiros."
+      ]
+    }
+  ],
+  "cartoons": [],
+  "generalNews": [],
+  "classifieds": [],
+  "obituaries": []
+}

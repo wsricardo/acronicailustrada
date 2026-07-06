@@ -1,0 +1,96 @@
+{
+  "id": "2026-312",
+  "status": "draft",
+  "number": 312,
+  "dateStr": "Quinta-feira, 2 de Julho de 2026",
+  "title": "A CRÔNICA ILUSTRADA",
+  "slogan": "A Sentinela das Liberdades e o Espelho do Progresso Nacional",
+  "price": "100 Réis",
+  "articles": [
+    {
+      "title": "A GRANDE TRAGÉDIA NA VENEZUELA",
+      "subtitle": "Um formidável abalo sísmico devasta a nação vizinha, deixando milhares sob os escombros e commovendo o mundo civilizado.",
+      "author": "Reportagem Internacional",
+      "dropcap": "O",
+      "illustrationUrl": "data/editions/2026/312/assets/terremoto.png",
+      "illustrationCaption": "A poeira das ruínas e o desespero das gentes após o tremor, em quadro de profunda consternação.",
+      "content": [
+        "Os telégrafos de todas as capitais do globo não cessam de transmitir as nefastas novas provenientes da República da Venezuela. Um cataclisma de proporções bíblicas fez a terra tremer com inaudita violência, reduzindo cidades inteiras a um amontoado de ruínas e pranto. O balanço provisório já aponta mais de duas mil almas ceifadas, enquanto o povo, em desespero, clama por socorro sob os tetos desabados.",
+        "Em gesto de suma fidalguia e fraternidade continental, o governo de nossa nação despachou, em caráter de urgência, tropas especializadas e engenheiros pátrios para auxiliar no resgate dos sobreviventes. As guarnições brasileiras já operam no teatro da tragédia, empregando modernos maquinismos na remoção dos escombros.",
+        "As nações estrangeiras também se mobilizam. O auxílio internacional chega a vapor, mas as vias de acesso encontram-se intransitáveis. É um quadro dantesco que exige a solidariedade de toda a Cristandade neste momento de negra provação para nossos irmãos sul-americanos."
+      ]
+    },
+    {
+      "title": "O IMPÉRIO YANKEE CONTRA OS SALTEADORES DO BRASIL",
+      "subtitle": "Washington decreta pesadas sanções econômicas a facções criminosas pátrias, apontadas como syndicate do terror internacional.",
+      "author": "Secção Policial & Diplomática",
+      "dropcap": "N",
+      "illustrationUrl": "data/editions/2026/312/assets/sancoes.png",
+      "illustrationCaption": "A tensão nos corredores da diplomacia após o decreto norte-americano contra as organizações ilícitas.",
+      "content": [
+        "Na manhã de ontem, os Estados Unidos da América do Norte, sob a direção do Sr. Trump, desferiram um golpe contundente contra o submundo do crime organizado em nosso torrão. Em uma manobra diplomática sem precedentes, Washington aplicou sanções severas a indivíduos e empresas nacionais, acusados de conluio com os temíveis bandos de malfeitores e arruaceiros.",
+        "A Casa Branca classificou tais ajuntamentos como autênticas agremiações de terror de alcance global. O decreto congela ativos e proíbe qualquer transação comercial com os implicados. As esferas do governo brasileiro, por sua vez, manifestaram-se com cautela. O Ministro da Fazenda, em nota oficial, teceu críticas à unilateralidade da ação, asseverando que a soberania das nossas instituições deve ser respeitada.",
+        "Nos bastidores da Avenida Rio Branco, os cavalheiros da alta finança discutem as possíveis repercussões no nosso mercado de capitais. Teme-se que o rigor da Lei norte-americana lance sombras sobre empresas legítimas que, por desventura, tenham cruzado caminhos comerciais com as firmas agora banidas pelo Tio Sam."
+      ]
+    }
+  ],
+  "cartoons": [
+    {
+      "title": "A BATALHA NOS GRAMADOS DO MUNDO",
+      "artist": "Traço Livre",
+      "caption": "A nossa valente esquadra canarinho afiando as chuteiras para o embate contra os formidáveis escandinavos da Noruega, no grande certame de foot-ball.",
+      "imageUrl": "data/editions/2026/312/assets/charge_copa.png"
+    }
+  ],
+  "generalNews": [
+    {
+      "title": "RUMORES DE GUERRA NAS ESTEPES",
+      "scope": "INTERNACIONAL - EUROPA",
+      "time": "08:15",
+      "content": "A Rússia desferiu um formidável ataque contra a capital kievana. Os telégrafos anunciam mais de uma dezena de fatalidades em meio ao troar dos canhões."
+    },
+    {
+      "title": "A QUEDA DO FALSO PROFETA",
+      "scope": "NACIONAL - POLÍCIA",
+      "time": "11:30",
+      "content": "A Inspetoria de Investigações deitou as garras no Pastor Pôncio, em meio à 'Operação Unha e Carne'. O detido é acusado de ligações obscuras com a máfia do contrabando."
+    },
+    {
+      "title": "O TORNEIO MUNDIAL DE FOOT-BALL",
+      "scope": "SPORT",
+      "time": "14:45",
+      "content": "A torcida brasileira suspira. O talentoso 'footballer' Lucas Paquetá, com estiramento muscular, é dúvida para o grande match de domingo contra a esquadra norueguesa."
+    }
+  ],
+  "classifieds": [
+    {
+      "category": "MEDICINA & SAÚDE",
+      "title": "PÍLULAS CONTRA O NERVOSISMO FOOTBALLISTICO",
+      "description": "Apreensivo com o jogo do Brasil? Estas pílulas maravilhosas acalmam o coração e evitam a síncope durante os matches intensos. Aprovação da Junta de Higiene.",
+      "contact": "Farmácia Central da Corte.",
+      "price": "Caixinha 2$500"
+    },
+    {
+      "category": "VEÍCULOS & MÁQUINAS",
+      "title": "AUTOMÓVEL DE PRAÇA - OCASIÃO",
+      "description": "Vende-se um motor Ford de inigualável potência, com pneumáticos de borracha legítima. Ideal para escapar da multidão e acompanhar as últimas notícias.",
+      "contact": "Garage do Sr. Baptista, Lapa.",
+      "price": "Sete Contos"
+    },
+    {
+      "category": "DIVERSOS",
+      "title": "FONÓGRAFO DE ÚLTIMA GERAÇÃO",
+      "description": "Aparelho de fina marchetaria para escutar as marchas nacionais e vibrar com os triunfos do foot-ball. Reproduz o som com a pureza de um rouxinol.",
+      "contact": "Casa dos Instrumentos, Rua do Ouvidor.",
+      "price": "A Combinar"
+    }
+  ],
+  "obituaries": [
+    {
+      "img": "data/editions/2026/312/assets/img-1783217547837-724356617.png",
+      "text": "Pedro faleceu no dia 4 de Julho de 2026. Foi uma pessoa muito querida que deixou enorme pesar entre seus entes e amigos. ",
+      "wake": "05-07-2026 Recife, Cemiterio Morada Nova",
+      "burial": "05-07-2026 Recife, Cemiterio Morada Nova, 16:30"
+    }
+  ]
+}

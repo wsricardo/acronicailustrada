@@ -1,19 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# A Crônica Ilustrada
 
-# Run and deploy your AI Studio app
+Bem-vindo ao repositório de **A Crônica Ilustrada**, um jornal digital que simula a experiência autêntica, estética e tipográfica de periódicos brasileiros das décadas de 1920 a 1950. 
 
-This contains everything you need to run your app locally.
-https://ai.studio/apps/55174670-b352-412b-aec9-6620da49cff0
+O projeto adota uma arquitetura moderna, rápida e sem banco de dados tradicionais. Toda a "leitura" é feita puramente no navegador do usuário via arquivos estáticos, enquanto o "jornalismo" acontece num painel administrativo local usando Node.js.
 
-## Run Locally
+## Primeiros Passos
 
-**Prerequisites:**  Node.js
+Se você acabou de chegar e quer rodar o projeto no seu computador, leia o nosso **[Guia Rápido de Inicialização (First Start)](FirstStart.md)**. Ele explica de forma simples como ligar o site público e a Mesa do Editor.
 
+## Documentação Técnica
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Para desenvolvedores e engenheiros querendo dar manutenção ou criar novas funcionalidades, a pasta `doc/` contém toda a documentação da nossa arquitetura:
+
+- **[Arquitetura do Sistema](doc/architecture.md):** Visão geral de como o site público (Frontend estático) e a Mesa do Editor (Servidor Headless Node.js) conversam entre si, incluindo o servidor híbrido de previews estáticos locais.
+- **[O Site Público (Frontend)](doc/frontend-public.md):** Documentação técnica sobre o carregamento dinâmico em Vanilla JS, UX/UI vintage responsivo, SEO e CSS Grid.
+- **[A Mesa do Editor (Backend / Admin)](doc/backend-admin.md):** Especificações da API em Express, manipulação do File System (renomeação automática de diretórios, hard refresh de estado e exclusão atômica em cascata) e indexação de edições.
+- **[Guia Linguístico](GUIA_LINGUISTICO.md):** Regras de ouro de como escrever textos usando ortografia e jargões da época (phármacia, telegrammas, etc.).
+- **[Guia de Monetização (AdSense)](Guia_AdSense.md):** Como posicionar anúncios de forma não-intrusiva mantendo a estética vintage.
+
+## Deploy (GitHub Pages)
+
+O projeto foi inteiramente desenhado para o ecossistema estático do GitHub Pages com a **Separação Estrita de Contextos**. 
+Você usa a pasta `/admin` apenas na sua máquina local para gerenciar o acervo (Gerador Estático/Headless CMS). Quando sua matéria estiver pronta, o GitHub Pages se encarregará de servir **exclusivamente** os arquivos estáticos da pasta `/public` com zero custo de servidor.
+
+## Licença
+
+Todos os direitos reservados ao seu autor e desenvolvedor Wandeson Ricardo  d'A Crônica Ilustrada.
