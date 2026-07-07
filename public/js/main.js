@@ -111,8 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let imgHtml = '';
                 if (art.illustrationUrl) {
+                    // Se for o primeiro artigo (capa), dá prioridade máxima. Se não, usa lazy load.
+                    const imgAttributes = index === 0 
+                        ? 'fetchpriority="high" decoding="sync"' 
+                        : 'loading="lazy" decoding="async"';
+                    
                     imgHtml = `
-                        <img src="${art.illustrationUrl}" alt="Ilustração" class="image-noir" onerror="this.style.display='none'">
+                        <img src="${art.illustrationUrl}" alt="Ilustração" class="image-noir" ${imgAttributes} onerror="this.style.display='none'">
                         ${art.illustrationCaption ? `<p class="image-caption">${art.illustrationCaption}</p>` : ''}
                     `;
                 }
@@ -155,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartEl.className = 'cartoon-item';
                 cartEl.innerHTML = `
                     <h3 class="cartoon-title">${cart.title}</h3>
-                    <img src="${cart.imageUrl}" class="image-noir" alt="${cart.title}">
+                    <img src="${cart.imageUrl}" class="image-noir" alt="${cart.title}" loading="lazy" decoding="async">
                     <p class="image-caption">${cart.caption}</p>
                     <p class="cartoon-artist">Traço de: ${cart.artist}</p>
                 `;
@@ -216,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 let imgHtml = '';
                 if (obit.img) {
-                    imgHtml = `<img src="${obit.img}" alt="Foto do falecido" class="obituary-photo">`;
+                    imgHtml = `<img src="${obit.img}" alt="Foto do falecido" class="obituary-photo" loading="lazy" decoding="async">`;
                 }
 
                 obitEl.innerHTML = `
