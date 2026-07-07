@@ -42,6 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScrollTop = scrollTop;
     });
 
+    function getDate() {
+        const now = new Date();
+        const dayOfWeek = now.toLocaleDateString('pt-BR', { weekday: 'long' });
+        const day = now.toLocaleDateString('pt-BR', { day: 'numeric' });
+        const month = now.toLocaleDateString('pt-BR', { month: 'long' });
+        const year = now.toLocaleDateString('pt-BR', { year: 'numeric' });
+
+        return `${dayOfWeek}, ${day} de ${month} de ${year}`;
+    }
+
     function renderArchiveList() {
         editionsList.innerHTML = '';
         availableEditions.forEach(ed => {
@@ -71,9 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderEdition(data) {
         document.getElementById('header-edition-num').textContent = `Num. ${data.number}`;
         document.getElementById('header-price').textContent = data.price;
-        document.getElementById('header-date').textContent = data.dateStr;
-        document.getElementById('nav-date').textContent = data.dateStr;
-        document.title = `${data.title} - Edição ${data.number}`;
+        document.getElementById('header-date').textContent = getDate();//data.dateStr;
+        document.getElementById('nav-date').textContent = getDate(); // Data de hoje.
+        document.title = `${data.title} - Edição ${data.number}`; // Data do lançamento da edição
 
         // Atualização Dinâmica de Metatags para SEO
         const updateMeta = (selector, content) => {
@@ -112,10 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let imgHtml = '';
                 if (art.illustrationUrl) {
                     // Se for o primeiro artigo (capa), dá prioridade máxima. Se não, usa lazy load.
-                    const imgAttributes = index === 0 
-                        ? 'fetchpriority="high" decoding="sync"' 
+                    const imgAttributes = index === 0
+                        ? 'fetchpriority="high" decoding="sync"'
                         : 'loading="lazy" decoding="async"';
-                    
+
                     imgHtml = `
                         <img src="${art.illustrationUrl}" alt="Ilustração" class="image-noir" ${imgAttributes} onerror="this.style.display='none'">
                         ${art.illustrationCaption ? `<p class="image-caption">${art.illustrationCaption}</p>` : ''}
@@ -218,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
             data.obituaries.forEach(obit => {
                 const obitEl = document.createElement('div');
                 obitEl.className = 'obituary-item';
-                
+
                 let imgHtml = '';
                 if (obit.img) {
                     imgHtml = `<img src="${obit.img}" alt="Foto do falecido" class="obituary-photo" loading="lazy" decoding="async">`;
@@ -252,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Erro ao carregar o índice de edições:', error);
         }
-        
+
         // Se conseguiu carregar e tem edições, carrega a primeira (mais recente)
         if (availableEditions.length > 0) {
             loadEdition(availableEditions[0].file);

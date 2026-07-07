@@ -15,7 +15,8 @@
     <meta name="robots" content="index, follow" />
 
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.googlesyndication.com https://*.google.com; frame-src 'self' https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com;">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.googlesyndication.com https://*.google.com; frame-src 'self' https://*.googlesyndication.com https://*.google.com https://*.doubleclick.net; connect-src 'self' https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com;">
 
     <meta name="google-adsense-account" content="ca-pub-9765187479679672">
 
@@ -67,7 +68,7 @@
     <!-- Navegação / Menu Superior -->
     <nav class="top-nav">
         <div class="nav-container">
-            <span class="nav-date" id="nav-date">Quarta-feira, 1 de Julho de 1926</span>
+            <span class="nav-date" id="nav-date"></span>
             <span class="nav-jornal-title">Jornal A Crônica Ilustrada</span>
             <button class="archive-btn" id="btn-archive" title="Ver edições anteriores do acervo">
                 <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.5"
@@ -101,23 +102,23 @@
         <!-- Cabeçalho Principal -->
         <header class="newspaper-header border-double-thick">
             <div class="header-top">
-                <span class="edition-number" id="header-edition-num">Num. 312</span>
-                <span class="edition-price" id="header-price">100 Réis</span>
+                <span class="edition-number" id="header-edition-num">Num. </span>
+                <span class="edition-price" id="header-price">Cem Réis</span>
             </div>
             <h1 class="newspaper-title main-title">A Crônica Ilustrada</h1>
             <div class="header-bottom">
                 <p class="slogan" id="header-slogan">A Sentinela das Liberdades e o Espelho do Progresso Nacional</p>
-                <p class="date" id="header-date">Rio de Janeiro, 1 de Julho de 1926</p>
+                <p class="date" id="header-date"></p>
             </div>
         </header>
 
         <!-- Conteúdo Dinâmico (preenchido via JS) -->
         <main id="newspaper-content" class="newspaper-content">
-            <div class="loading">Buscando nos arquivos da época...</div>
+            <div class="loading">Carregando as principais notícias...</div>
         </main>
 
         <footer class="newspaper-footer border-t-double">
-            <p>A Crônica Ilustrada &copy; 2026 - Todos os direitos reservados à Empresa Limitada.</p>
+            <p>A Crônica Ilustrada &copy; 2026 - Todos os direitos reservados.</p>
         </footer>
     </div>
 
