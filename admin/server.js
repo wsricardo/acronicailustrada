@@ -45,7 +45,7 @@ const storage = multer.diskStorage({
         // so frontend must append year and number BEFORE the file!
         let year = req.body.year || new Date().getFullYear();
         let number = req.body.number || '000';
-        
+
         // Sanitização básica contra path traversal
         year = String(year).replace(/[^a-zA-Z0-9_-]/g, '');
         number = String(number).replace(/[^a-zA-Z0-9_-]/g, '');
@@ -114,7 +114,7 @@ app.get('/api/editions', async (req, res) => {
             let status = 'published';
             let title = '';
             let articleTitles = [];
-            
+
             if (fs.existsSync(filepath)) {
                 try {
                     const data = JSON.parse(await fsp.readFile(filepath, 'utf8'));
@@ -123,11 +123,11 @@ app.get('/api/editions', async (req, res) => {
                     if (data.articles && Array.isArray(data.articles)) {
                         articleTitles = data.articles.map(a => a.title).filter(Boolean);
                     }
-                } catch (e) {}
+                } catch (e) { }
             }
             return { file, status, title, articleTitles };
         }));
-        
+
         adminEditionsCache = editionsList; // Salvar no cache em memória
         res.json(editionsList);
     } catch (err) {
@@ -139,7 +139,7 @@ app.get('/api/editions', async (req, res) => {
 // O frontend vai mandar a rota completa ex: 1926/312/edition-312.json
 app.get('/api/editions/*', (req, res) => {
     const filename = req.params[0];
-    
+
     const filepath = path.join(EDITIONS_DIR, filename);
     const resolvedPath = path.resolve(filepath);
     const resolvedEditionsDir = path.resolve(EDITIONS_DIR);
@@ -162,7 +162,7 @@ async function updateEditionsIndex() {
     try {
         const files = await getEditionsFiles(EDITIONS_DIR);
         const indexData = [];
-        
+
         await Promise.all(files.map(async (file) => {
             const filepath = path.join(EDITIONS_DIR, file);
             if (fs.existsSync(filepath) && file.endsWith('.json')) {
@@ -178,14 +178,14 @@ async function updateEditionsIndex() {
                 }
             }
         }));
-        
+
         indexData.sort((a, b) => b.number - a.number);
-        
+
         const indexPath = path.join(EDITIONS_DIR, 'index.json');
         await fsp.writeFile(indexPath, JSON.stringify(indexData, null, 2), 'utf8');
-        
+
         // Invalida o cache do admin para ser recriado no próximo GET
-        adminEditionsCache = null; 
+        adminEditionsCache = null;
         console.log('Índice de edições atualizado.');
     } catch (err) {
         console.error('Erro ao atualizar o índice de edições:', err);
@@ -265,7 +265,7 @@ app.post('/api/editions', async (req, res) => {
     try {
         await fsp.writeFile(filepath, JSON.stringify(data, null, 2), 'utf8');
         updateEditionsIndex(); // Não usamos await para não prender o retorno
-        
+
         // Identificar arquivos órfãos (arquivos na pasta assets que não constam no JSON da edição)
         const assetsDir = path.join(targetDir, 'assets');
         let orphans = [];
@@ -279,11 +279,11 @@ app.post('/api/editions', async (req, res) => {
                 }
             }
         }
-        
-        res.json({ 
-            message: 'Edição salva com sucesso!', 
-            filename: relativeSavedPath, 
-            urlsUpdated, 
+
+        res.json({
+            message: 'Edição salva com sucesso!',
+            filename: relativeSavedPath,
+            urlsUpdated,
             newData: data,
             orphans,
             targetDir: `${baseYear}/${number}`
@@ -301,14 +301,14 @@ app.post('/api/cleanup', async (req, res) => {
     if (!targetDir || !files || !Array.isArray(files)) {
         return res.status(400).json({ error: 'Parâmetros inválidos.' });
     }
-    
+
     // Segurança
     const resolvedPath = path.resolve(path.join(EDITIONS_DIR, targetDir, 'assets'));
     const resolvedEditionsDir = path.resolve(EDITIONS_DIR);
     if (!resolvedPath.startsWith(resolvedEditionsDir)) {
         return res.status(403).json({ error: 'Acesso negado.' });
     }
-    
+
     let deletedCount = 0;
     for (const file of files) {
         try {
@@ -328,22 +328,22 @@ app.post('/api/cleanup', async (req, res) => {
 app.delete('/api/editions/:year/:number', async (req, res) => {
     let year = req.params.year;
     let number = req.params.number;
-    
+
     year = String(year).replace(/[^a-zA-Z0-9_-]/g, '');
     number = String(number).replace(/[^a-zA-Z0-9_-]/g, '');
-    
+
     const targetDir = path.join(EDITIONS_DIR, year, number);
     const resolvedPath = path.resolve(targetDir);
     const resolvedEditionsDir = path.resolve(EDITIONS_DIR);
-    
+
     if (!resolvedPath.startsWith(resolvedEditionsDir)) {
         return res.status(403).json({ error: 'Acesso negado.' });
     }
-    
+
     if (!fs.existsSync(targetDir)) {
         return res.status(404).json({ error: 'Edição não encontrada.' });
     }
-    
+
     try {
         await fsp.rm(targetDir, { recursive: true, force: true });
         updateEditionsIndex();

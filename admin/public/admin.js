@@ -49,7 +49,7 @@ async function loadEditionList() {
 function renderEditionList(files) {
     const container = document.getElementById('edition-list-container');
     container.innerHTML = '';
-    
+
     if (files.length === 0) {
         container.innerHTML = '<li>Nenhuma edição encontrada.</li>';
         return;
@@ -58,11 +58,11 @@ function renderEditionList(files) {
     files.forEach(item => {
         const filename = typeof item === 'string' ? item : item.file;
         const status = typeof item === 'string' ? 'published' : item.status;
-        
-        const statusBadge = status === 'published' 
-            ? '<span style="color: #28a745; font-size: 0.8em; font-weight: bold; margin-left: 10px;">[PUBLICADO]</span>' 
+
+        const statusBadge = status === 'published'
+            ? '<span style="color: #28a745; font-size: 0.8em; font-weight: bold; margin-left: 10px;">[PUBLICADO]</span>'
             : '<span style="color: #666; font-size: 0.8em; font-weight: bold; margin-left: 10px;">[RASCUNHO]</span>';
-            
+
         const li = document.createElement('li');
         li.className = 'edition-item';
         li.innerHTML = `
@@ -95,11 +95,11 @@ document.getElementById('search-editions').addEventListener('input', (e) => {
         const filename = typeof item === 'string' ? item : item.file;
         const title = item.title || '';
         const articles = item.articleTitles ? item.articleTitles.join(' ') : '';
-        
+
         const searchableText = removeAccents(`${filename} ${title} ${articles}`);
         return searchableText.includes(query);
     });
-    
+
     renderEditionList(filtered);
 });
 
@@ -120,7 +120,7 @@ document.getElementById('btn-delete-cancel').addEventListener('click', () => {
 document.getElementById('btn-delete-confirm').addEventListener('click', async () => {
     if (!editionToDelete) return;
     const filename = editionToDelete;
-    
+
     // Fechar modal
     document.getElementById('delete-modal').style.display = 'none';
     editionToDelete = null;
@@ -133,7 +133,7 @@ document.getElementById('btn-delete-confirm').addEventListener('click', async ()
     }
     const year = parts[0];
     const number = parts[1];
-    
+
     try {
         const res = await fetch(`/api/editions/${year}/${number}`, { method: 'DELETE' });
         const data = await res.json();
@@ -156,7 +156,7 @@ async function editEdition(filename) {
         const data = await res.json();
 
         clearForm();
-        
+
         const currentStatus = data.status || 'published';
         const badgeColor = currentStatus === 'published' ? '#28a745' : '#666';
         const badgeText = currentStatus === 'published' ? 'PUBLICADO' : 'RASCUNHO';
@@ -257,7 +257,7 @@ async function editEdition(filename) {
                 box.querySelector('.obit-text').value = obit.text || '';
                 box.querySelector('.obit-wake').value = obit.wake || '';
                 box.querySelector('.obit-burial').value = obit.burial || '';
-                
+
                 if (obit.img) {
                     const hiddenUrl = document.createElement('input');
                     hiddenUrl.type = 'hidden';
@@ -430,7 +430,7 @@ document.getElementById('edition-form').addEventListener('submit', async (e) => 
     e.preventDefault();
     const btn = e.submitter;
     const isPublish = btn.id === 'btn-publish';
-    
+
     btn.disabled = true;
     const originalText = btn.innerText;
     btn.innerText = "Salvando...";
@@ -547,11 +547,11 @@ document.getElementById('edition-form').addEventListener('submit', async (e) => 
 
         if (response.ok) {
             const dataRes = await response.json();
-            
+
             statusMsg.className = "success";
             statusMsg.innerText = "Edição salva com sucesso! " + (isPublish ? "(Publicada)" : "(Rascunho)");
             statusMsg.style.display = "block";
-            
+
             const badgeColor = isPublish ? '#28a745' : '#666';
             const badgeText = isPublish ? 'PUBLICADO' : 'RASCUNHO';
             const badgeSpan = document.getElementById('form-status-badge');
@@ -565,7 +565,7 @@ document.getElementById('edition-form').addEventListener('submit', async (e) => 
                 badgeSpan.style.color = 'white';
                 badgeSpan.style.verticalAlign = 'middle';
             }
-            
+
             // Verificar arquivos órfãos
             if (dataRes.orphans && dataRes.orphans.length > 0) {
                 if (confirm(`Foram encontrados ${dataRes.orphans.length} arquivos órfãos (imagens deletadas ou substituídas) nesta edição. Deseja limpá-los para economizar espaço?`)) {
