@@ -10,7 +10,8 @@ Sua única responsabilidade é capturar textos e imagens do jornalista através 
 - **Comunicação Front/Back:** Vanilla JS (Fetch API) no lado do painel.
 
 ## 2. A Mágica do `server.js` (O Coração)
-Este arquivo é o servidor propriamente dito. Ele levanta uma API local (porta 3000) e escuta rotas principais:
+Este arquivo é o servidor propriamente dito. Ele levanta uma API local (porta 3000) e escuta rotas principais. 
+**Atenção de Segurança:** O backend foi construído propositalmente de forma simples, com operações síncronas (`fs.renameSync`) e sem camadas de autenticação (sem senhas). Isso significa que **ele nunca deve ser exposto publicamente na internet**. Ele serve exclusivamente para rodar no seu `localhost` (sua própria máquina) de forma privada.
 
 ### `Servidor Híbrido Estático (/data)`
 O express está configurado com `app.use('/data', ...)` para servir a pasta `public/data`. Isso permite que o painel admin (porta 3000) possa renderizar e visualizar imagens armazenadas na pasta de produção, resolvendo o bug clássico de imagens quebradas no Headless CMS.

@@ -33,6 +33,7 @@ graph TD
 - **Zero Banco de Dados:** Todo o conteúdo é lido de arquivos estáticos `.json` que ficam hospedados fisicamente em `/public/data/editions/`. 
 - **Índice Automático:** Quando o site carrega, o script solicita primeiro o `index.json`. Este arquivo contém o mapeamento de todas as edições já publicadas. Isso permite ao site carregar automaticamente a edição mais recente na página inicial e preencher o menu "Acervo".
 - **Client-Side Rendering (CSR):** O arquivo `js/main.js` injeta o conteúdo no DOM. O layout usa **CSS Grid** e Variáveis Customizadas, sem frameworks externos.
+- **Otimização de Motores de Busca (SEO) e Performance:** O site é escaneável pelos *crawlers* do Google devido à inclusão de `robots.txt` e `sitemap.xml`. Conta ainda com metatag Open Graph para compartilhamento estético de link (`og:image`). Recursos críticos utilizam `preload` e scripts possuem a tag `defer`, melhorando os Web Vitals. Possui também proteção contra XSS via **Content Security Policy (CSP)**.
 - Detalhes profundos: leia `doc/frontend-public.md`.
 
 ## 2. A Mesa do Editor (Backend Administrativo)

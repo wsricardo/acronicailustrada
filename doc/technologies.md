@@ -14,12 +14,19 @@ O frontend foi desenvolvido sem o uso de frameworks modernos (como React, Vue ou
     *   **Filtros CSS (`filter`):** Uso de `sepia()`, `contrast()`, `grayscale()` para envelhecer dinamicamente as imagens (fotografias e cartuns) carregadas pelo painel, eliminando a necessidade de tratamento de imagem no backend.
     *   **Funções de responsividade (`clamp`):** Para tipografia fluida que se adapta suavemente de telas de smartphones a monitores ultrawide.
     *   [Referência MDN: CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
-*   **Vanilla JavaScript (ES6+):**
     *   Uso da `Fetch API` assíncrona para requisições de rede.
     *   Manipulação imperativa do DOM via `document.createElement` e `innerHTML` para renderização dinâmica das edições com base no JSON.
+    *   **Performance Integrada:** Atributos HTML modernos como `loading="lazy"`, `decoding="async"`, e `fetchpriority="high"` são manipulados via JavaScript para garantir a alta pontuação nos Core Web Vitals (LCP otimizado).
     *   [Referência MDN: Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
-## 2. Tipografia Clássica (Google Fonts)
+## 2. SEO, Segurança e Compartilhamento
+
+Apesar de ser uma Single Page Application construída com Vanilla JS puro, o sistema adota estratégias modernas para web:
+*   **Sitemap & Robots:** Arquivos `sitemap.xml` e `robots.txt` estáticos orientam os robôs de busca corretamente.
+*   **Open Graph (Metatags Sociais):** As tags `og:image`, `og:title`, e `og:description` são populadas estaticamente no `index.html` e dinamicamente via JS. A imagem de Open Graph foi desenhada para criar um card de WhatsApp/Facebook com estética de época.
+*   **Content Security Policy (CSP):** O arquivo HTML impõe restrições estritas de segurança pelo navegador para bloquear tentativas de ataques Cross-Site Scripting (XSS).
+
+## 3. Tipografia Clássica (Google Fonts)
 
 Para imitar perfeitamente o aspecto visual e o peso editorial das décadas de 1920 a 1950, foram selecionadas fontes específicas:
 
@@ -29,7 +36,7 @@ Para imitar perfeitamente o aspecto visual e o peso editorial das décadas de 19
 *   **Cinzel:** Para subtítulos em caixa alta com aspecto monumental romano.
 *   [Google Fonts](https://fonts.google.com/)
 
-## 3. Backend (Painel Administrativo)
+## 4. Backend (Painel Administrativo)
 
 O ambiente do editor é suportado por um ecossistema Node.js leve e focado.
 
