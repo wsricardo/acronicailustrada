@@ -23,7 +23,14 @@
     }
   ],
   "cartoons": [],
-  "generalNews": [],
+  "generalNews": [
+    {
+      "title": "Empresas Americas Contra Tarifas ao Brasil",
+      "scope": "Internacional - EUA",
+      "time": "11:35",
+      "content": "Empresas americanas enviaram carta posicionando-se contra as possíveis tarifas a serem impostas ao Brasil alegando escassez de alguns insumos importantes ao mercado americano."
+    }
+  ],
   "classifieds": [],
   "obituaries": []
 }
