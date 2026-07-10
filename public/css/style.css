@@ -636,14 +636,20 @@ body {
 }
 
 .editions-list li {
-  border: 1px solid var(--border-color);
-  padding: 1.2rem;
-  cursor: pointer;
+  padding: 0; /* Changed to 0 so the link can take the padding */
   background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
   transition: all 0.2s;
+}
+
+.archive-link {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1.2rem;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
   font-family: var(--font-display);
 }
 

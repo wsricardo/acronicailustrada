@@ -4,6 +4,7 @@ const fs = require('fs');
 const fsp = require('fs').promises;
 const path = require('path');
 const multer = require('multer');
+const ssg = require('./ssg');
 
 const app = express();
 const PORT = 3000;
@@ -184,9 +185,32 @@ async function updateEditionsIndex() {
         const indexPath = path.join(EDITIONS_DIR, 'index.json');
         await fsp.writeFile(indexPath, JSON.stringify(indexData, null, 2), 'utf8');
 
+        // ==== INÍCIO DO SSG (Static Site Generation) ====
+        for (let i = 0; i < indexData.length; i++) {
+            const entry = indexData[i];
+            const jsonPath = path.join(EDITIONS_DIR, entry.file);
+            try {
+                const data = JSON.parse(await fsp.readFile(jsonPath, 'utf8'));
+                const html = ssg.generateStaticHTML(data);
+                
+                // Salvar HTML na pasta da edição
+                const editionDir = path.dirname(jsonPath);
+                await fsp.writeFile(path.join(editionDir, 'index.html'), html, 'utf8');
+
+                // Se for a edição mais recente, salvar também na raiz do site
+                if (i === 0) {
+                    const rootIndexHtml = path.join(SITE_PUBLIC_DIR, 'index.html');
+                    await fsp.writeFile(rootIndexHtml, html, 'utf8');
+                }
+            } catch (err) {
+                console.error(`Erro ao gerar HTML SSG para ${entry.file}:`, err);
+            }
+        }
+        // ==== FIM DO SSG ====
+
         // Invalida o cache do admin para ser recriado no próximo GET
         adminEditionsCache = null;
-        console.log('Índice de edições atualizado.');
+        console.log('Índice de edições atualizado e páginas estáticas (SSG) geradas.');
     } catch (err) {
         console.error('Erro ao atualizar o índice de edições:', err);
     }
