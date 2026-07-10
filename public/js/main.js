@@ -1,8 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const archiveModal = document.getElementById('archive-modal');
     const btnArchive = document.getElementById('btn-archive');
-    const closeModal = document.querySelector('.close-modal');
     const editionsList = document.getElementById('editions-list');
+    
+    // Elementos do Modal de Privacidade
+    const privacyModal = document.getElementById('privacy-modal');
+    const btnPrivacy = document.getElementById('btn-privacy');
+
+    // Botões de Fechar
+    const closeButtons = document.querySelectorAll('.close-modal');
 
     // Available editions. Get lis editions.
     let availableEditions = [];
@@ -12,13 +18,26 @@ document.addEventListener('DOMContentLoaded', () => {
         renderArchiveList();
     });
 
-    closeModal.addEventListener('click', () => {
-        archiveModal.classList.add('hidden');
+    if (btnPrivacy) {
+        btnPrivacy.addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyModal.classList.remove('hidden');
+        });
+    }
+
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            archiveModal.classList.add('hidden');
+            if (privacyModal) privacyModal.classList.add('hidden');
+        });
     });
 
     window.addEventListener('click', (e) => {
         if (e.target === archiveModal) {
             archiveModal.classList.add('hidden');
+        }
+        if (e.target === privacyModal) {
+            privacyModal.classList.add('hidden');
         }
     });
 
