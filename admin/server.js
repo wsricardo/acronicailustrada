@@ -208,6 +208,29 @@ async function updateEditionsIndex() {
         }
         // ==== FIM DO SSG ====
 
+        // ==== GERAÇÃO DO SITEMAP.XML ====
+        try {
+            const domain = 'https://www.acronicailustrada.com.br';
+            const today = new Date().toISOString().split('T')[0];
+            let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+            
+            // Root page
+            sitemapXml += `  <url>\n    <loc>${domain}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+
+            for (let i = 0; i < indexData.length; i++) {
+                const entry = indexData[i];
+                // entry.file is like '2026/1/edition-1.json', we want '/data/editions/2026/1/index.html'
+                const editionFolder = entry.file.split('/edition-')[0];
+                sitemapXml += `  <url>\n    <loc>${domain}/data/editions/${editionFolder}/index.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+            }
+            sitemapXml += `</urlset>`;
+            
+            await fsp.writeFile(path.join(SITE_PUBLIC_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
+        } catch (err) {
+            console.error('Erro ao gerar sitemap.xml:', err);
+        }
+        // ==================================
+
         // Invalida o cache do admin para ser recriado no próximo GET
         adminEditionsCache = null;
         console.log('Índice de edições atualizado e páginas estáticas (SSG) geradas.');

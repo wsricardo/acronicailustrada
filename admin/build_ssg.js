@@ -68,6 +68,29 @@ async function build() {
                 console.error(`Erro ao gerar HTML SSG para ${entry.file}:`, err);
             }
         }
+        
+        // ==== GERAÇÃO DO SITEMAP.XML ====
+        try {
+            const domain = 'https://www.acronicailustrada.com.br';
+            const today = new Date().toISOString().split('T')[0];
+            let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+            
+            sitemapXml += `  <url>\n    <loc>${domain}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.0</priority>\n  </url>\n`;
+
+            for (let i = 0; i < indexData.length; i++) {
+                const entry = indexData[i];
+                const editionFolder = entry.file.split('/edition-')[0];
+                sitemapXml += `  <url>\n    <loc>${domain}/data/editions/${editionFolder}/index.html</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+            }
+            sitemapXml += `</urlset>`;
+            
+            await fsp.writeFile(path.join(SITE_PUBLIC_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
+            console.log('[SSG] Gerado: sitemap.xml');
+        } catch (err) {
+            console.error('Erro ao gerar sitemap.xml:', err);
+        }
+        // ==================================
+
         console.log('Build concluído com sucesso!');
     } catch (err) {
         console.error('Erro no build:', err);

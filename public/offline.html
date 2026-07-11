@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Crônica Ilustrada - Sem Conexão</title>
+    
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#F9F6F0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/icon-192.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=UnifrakturMaguntia&family=Cinzel:wght@700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <style>
+        .offline-container {
+            text-align: center;
+            padding: 50px 20px;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .offline-icon {
+            font-size: 4rem;
+            color: #4a4a4a;
+            margin-bottom: 20px;
+        }
+        .btn-home {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #2b2b2b;
+            color: #F9F6F0;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            border-radius: 4px;
+            border: 2px solid #2b2b2b;
+            transition: all 0.3s;
+        }
+        .btn-home:hover {
+            background-color: transparent;
+            color: #2b2b2b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="newspaper-texture"></div>
+
+    <nav class="top-nav">
+        <div class="nav-container" style="justify-content: center;">
+            <span class="nav-jornal-title">Jornal A Crônica Ilustrada</span>
+        </div>
+    </nav>
+
+    <div class="newspaper-container" style="margin-top: 80px;">
+        <header class="newspaper-header border-double-thick" style="border-bottom: none;">
+            <h1 class="newspaper-title main-title" style="font-size: 3rem;">Edição Inacessível</h1>
+        </header>
+
+        <main class="newspaper-content border-double-thick" style="border-top: 2px solid #2b2b2b;">
+            <div class="offline-container">
+                <div class="offline-icon">📠</div>
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px;">Sem conexão com o telégrafo</h2>
+                <p style="font-family: 'Lora', serif; font-size: 1.1rem; max-width: 600px; line-height: 1.6;">
+                    Nossos entregadores não conseguiram chegar com esta edição até você pois parece que você está sem conexão com a internet.
+                    <br><br>
+                    Verifique o seu sinal para ler as novidades. Enquanto isso, você pode retornar à página inicial e ler os jornais que já estão armazenados em sua maleta (cache do seu dispositivo).
+                </p>
+                <a href="/" class="btn-home">Retornar à Página Inicial</a>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

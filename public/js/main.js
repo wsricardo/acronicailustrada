@@ -80,17 +80,80 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    async function loadIndex() {
-        try {
-            const response = await fetch('/data/editions/index.json');
-            if (response.ok) {
-                availableEditions = await response.json();
+    async function checkForUpdates() {
+        // Se estiver offline, ainda precisamos carregar as edições salvas no cache
+        if (!navigator.onLine) {
+            try {
+                const response = await fetch('/data/editions/index.json');
+                if (response.ok) {
+                    availableEditions = await response.json();
+                }
+            } catch (err) {
+                console.error('Erro ao ler do cache offline:', err);
             }
-        } catch (error) {
-            console.error('Erro ao carregar o índice de edições:', error);
+            return;
+        }
+
+        try {
+            // Timestamp prevent cache
+            const response = await fetch('/data/editions/index.json?t=' + new Date().getTime());
+            if (response.ok) {
+                const freshEditions = await response.json();
+                
+                // Se o availableEditions já estava carregado antes
+                if (availableEditions.length > 0 && freshEditions.length > 0) {
+                    const localLatest = availableEditions[0].id;
+                    const remoteLatest = freshEditions[0].id;
+                    
+                    if (localLatest !== remoteLatest) {
+                        showUpdateToast();
+                    }
+                }
+                
+                availableEditions = freshEditions;
+            }
+        } catch (err) {
+            console.error('Erro na checagem de atualização PWA:', err);
         }
     }
 
+    function showUpdateToast() {
+        let toast = document.getElementById('pwa-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'pwa-toast';
+            toast.className = 'pwa-toast border-double-thick';
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <span>📰 <b>Nova edição disponível!</b> O jornaleiro acaba de entregar notícias frescas.</span>
+                    <button id="pwa-refresh-btn" class="archive-btn" style="margin-top: 10px; font-size: 0.8rem; display: block; margin-left: auto; margin-right: auto; padding: 5px 15px;">Ler Agora</button>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            
+            document.getElementById('pwa-refresh-btn').addEventListener('click', () => {
+                window.location.href = '/';
+            });
+        }
+        // Force reflow and show
+        setTimeout(() => toast.classList.add('show'), 100);
+    }
+
+    // PWA Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+                console.log('Service Worker registrado com escopo:', registration.scope);
+            }).catch(err => {
+                console.log('Falha ao registrar Service Worker:', err);
+            });
+        });
+    }
+
+    // Checar por atualizações periodicamente (a cada 5 min se a janela estiver aberta) e quando voltar a internet
+    setInterval(checkForUpdates, 300000);
+    window.addEventListener('online', checkForUpdates);
+
     // Carrega o índice silenciosamente em background para o caso de o usuário abrir o acervo
-    loadIndex();
+    checkForUpdates();
 });

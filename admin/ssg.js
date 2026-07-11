@@ -12,7 +12,7 @@ function generateStaticHTML(editionData) {
     let template = fs.readFileSync(templatePath, 'utf8');
 
     // SEO Info
-    let seoDescription = editionData.slogan || "Jornal Retrô Clássico com as últimas notícias da capital.";
+    let seoDescription = editionData.slogan || "Jornal de estética vintage que une jornalismo atual e elementos artísticos, inspirado nos antigos diários brasileiros.";
     if (editionData.articles && editionData.articles.length > 0) {
         const mainArticle = editionData.articles[0];
         seoDescription = `Destaques da edição de ${editionData.dateStr}: ${mainArticle.title}. ${mainArticle.subtitle || ''}`.trim();

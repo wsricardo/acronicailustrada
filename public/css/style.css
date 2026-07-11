@@ -91,8 +91,31 @@ body {
   font-size: 0.8rem;
   cursor: pointer;
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
+
+/* --- PWA Toast Notification --- */
+.pwa-toast {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #F9F6F0;
+    color: #2b2b2b;
+    padding: 15px 25px;
+    z-index: 10000;
+    transition: bottom 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    max-width: 90%;
+    width: 320px;
+    text-align: center;
+    font-family: 'Lora', serif;
+}
+
+.pwa-toast.show {
+    bottom: 20px;
+}
+
 
 .archive-btn:hover {
   background-color: var(--border-color);
