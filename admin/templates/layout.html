@@ -145,22 +145,71 @@
             {{CONTENT}}
         </main>
 
+
+        <!-- Modal Apoio -->
+        <div id="support-modal" class="modal hidden">
+            <div class="modal-content border-double-thick" style="max-width: 550px; text-align: center;">
+                <span class="close-modal">&times;</span>
+                <h2 class="newspaper-title" style="font-size: 2.2rem; margin-bottom: 0.2rem;">Ao Nosso Leitor</h2>
+                <h3 class="article-subtitle" style="font-size: 1rem; margin-bottom: 1rem;">Um convite ao mecenato</h3>
+                <div class="ornament-separator" style="margin: 1.5rem 0;"><span>✦</span></div>
+
+                <div class="article-body" style="font-size: 1.05rem; text-align: center; line-height: 1.6;">
+                    <p style="text-indent: 0;"><em>A Crônica Ilustrada</em> é um diário independente erguido pelo amor à
+                        arte e à verdade. Se as nossas páginas lhe trouxeram algum deleite, reflexão ou boas novas,
+                        considere tornar-se um patrono desta gazeta.</p>
+                    <p style="text-indent: 0; margin-bottom: 1.5rem;">Qualquer contribuição ajuda a manter nossas
+                        prensas rodando e a história viva.</p>
+
+                    <div
+                        style="margin: 0 auto 2rem auto; padding: 2rem 1.5rem; border: 2px dashed var(--border-color); background-color: var(--bg-color); position: relative; max-width: 90%;">
+                        <!-- Tesourinha -->
+                        <span
+                            style="position: absolute; top: -14px; left: 10px; font-size: 1.4rem; color: var(--border-color); background: var(--bg-texture); padding: 0 4px; transform: rotate(-15deg);">✂</span>
+
+                        <p
+                            style="font-family: var(--font-roman); font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; color: var(--text-secondary);">
+                            Contribuição via PIX</p>
+
+                        <p id="pix-key-text"
+                            style="font-family: monospace; font-size: 1.15rem; word-break: break-all; margin: 0 auto 1.5rem auto; text-indent: 0; padding: 0.8rem; border: 1px solid rgba(44, 40, 37, 0.15); background-color: rgba(0,0,0,0.03); max-width: 90%;">
+                            c855694b-df4e-465a-83b7-2e368b3f0a47</p>
+
+                        <button id="copy-pix-btn" class="btn-primary-retro" style="width: 85%;">Copiar Chave
+                            Pix</button>
+                    </div>
+                    <p style="margin-top: 1.5rem; text-align: center; font-style: italic;">
+                        <i>Wandeson Ricardo</i>
+                    </p>
+
+                    <button class="archive-btn close-modal-btn" style="font-size: 0.85rem;">Retornar à Leitura</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Principal -->
         <footer class="newspaper-footer border-t-double">
             <p>A Crônica Ilustrada &copy; 2026 - Todos os direitos reservados.</p>
-            <p><a href="#" id="btn-privacy" style="color: inherit; text-decoration: none;">Politica de Privacidade e
-                    Termos de Uso</a></p>
 
-            <section
-                style="display: flexbox; flex-direction: column; width: 100%; text-align: center; font-family: Lora;">
+            <section class="footer-links">
+                <a href="#" id="btn-privacy" class="footer-link">
+                    Politica de Privacidade e Termos de Uso</a>
+            </section>
 
-                <div id="support">
-                    Apoio
-                </div>
+            <section class="footer-links">
 
-                <div id="canal-whatsapp">
-                    <a href="https://whatsapp.com/channel/0029Vb8joVE002TBl7rNn41V">Canal WhatsApp</a>
-                </div>
 
+                <a href="#" id="btn-support" class="footer-link">Apoie o Jornalismo Independente</a>
+
+                <span class="footer-separator">✦</span>
+
+                <a href="https://whatsapp.com/channel/0029Vb8joVE002TBl7rNn41V" class="footer-link" target="_blank"
+                    rel="noopener noreferrer">Canal WhatsApp</a>
+
+                <span class="footer-separator">✦</span>
+
+                <a href="https://www.instagram.com/acronicailustrada/" class="footer-link" target="_blank"
+                    rel="noopener noreferrer">Instagram</a>
             </section>
         </footer>
     </div>

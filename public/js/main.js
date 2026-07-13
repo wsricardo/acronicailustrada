@@ -2,10 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const archiveModal = document.getElementById('archive-modal');
     const btnArchive = document.getElementById('btn-archive');
     const editionsList = document.getElementById('editions-list');
-    
+
     // Elementos do Modal de Privacidade
     const privacyModal = document.getElementById('privacy-modal');
     const btnPrivacy = document.getElementById('btn-privacy');
+
+    // Elementos modal apoio
+    const supportModal = document.getElementById('support-modal');
+    const btnSupport = document.getElementById('btn-support');
 
     // Botões de Fechar
     const closeButtons = document.querySelectorAll('.close-modal');
@@ -25,12 +29,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (btnSupport) {
+        btnSupport.addEventListener('click', (e) => {
+            e.preventDefault();
+            supportModal.classList.remove('hidden');
+        });
+    }
+
+    const copyPixBtn = document.getElementById('copy-pix-btn');
+    if (copyPixBtn) {
+        copyPixBtn.addEventListener('click', () => {
+            const pixText = document.getElementById('pix-key-text').innerText.trim();
+            navigator.clipboard.writeText(pixText).then(() => {
+                const originalText = copyPixBtn.innerText;
+                copyPixBtn.innerText = 'Copiado!';
+                setTimeout(() => {
+                    copyPixBtn.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Falha ao copiar PIX: ', err);
+            });
+        });
+    }
+
     closeButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             archiveModal.classList.add('hidden');
             if (privacyModal) privacyModal.classList.add('hidden');
+            if (supportModal) supportModal.classList.add('hidden');
         });
     });
+
+    const closeBottomBtn = document.querySelector('.close-modal-btn');
+    if (closeBottomBtn) {
+        closeBottomBtn.addEventListener('click', () => {
+            if (supportModal) supportModal.classList.add('hidden');
+        });
+    }
 
     window.addEventListener('click', (e) => {
         if (e.target === archiveModal) {
@@ -38,6 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (e.target === privacyModal) {
             privacyModal.classList.add('hidden');
+        }
+        if (e.target === supportModal) {
+            supportModal.classList.add('hidden');
         }
     });
 
@@ -64,17 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
         editionsList.innerHTML = '';
         availableEditions.forEach(ed => {
             const li = document.createElement('li');
-            
+
             // Extract folder path from the JSON path. e.g. "2026/312/edition-312.json" -> "/data/editions/2026/312/index.html"
             const jsonPathParts = ed.file.split('/');
             jsonPathParts.pop(); // remove json file name
             const folderPath = jsonPathParts.join('/');
-            
+
             const link = document.createElement('a');
             link.href = `/data/editions/${folderPath}/index.html`;
             link.className = 'archive-link';
             link.innerHTML = `<span class="ed-title">${ed.title}</span><span class="ed-date">${ed.date}</span>`;
-            
+
             li.appendChild(link);
             editionsList.appendChild(li);
         });
@@ -99,17 +137,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('/data/editions/index.json?t=' + new Date().getTime());
             if (response.ok) {
                 const freshEditions = await response.json();
-                
+
                 // Se o availableEditions já estava carregado antes
                 if (availableEditions.length > 0 && freshEditions.length > 0) {
                     const localLatest = availableEditions[0].id;
                     const remoteLatest = freshEditions[0].id;
-                    
+
                     if (localLatest !== remoteLatest) {
                         showUpdateToast();
                     }
                 }
-                
+
                 availableEditions = freshEditions;
             }
         } catch (err) {
@@ -130,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             document.body.appendChild(toast);
-            
+
             document.getElementById('pwa-refresh-btn').addEventListener('click', () => {
                 window.location.href = '/';
             });
