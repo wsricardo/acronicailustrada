@@ -22,7 +22,14 @@
       ]
     }
   ],
-  "cartoons": [],
+  "cartoons": [
+    {
+      "title": "Sonhos Ainda Sobrevivem Hoje?",
+      "artist": "Wandeson Ricardo ( WSRicardo )",
+      "caption": "Sonhos nossos de cada dia.",
+      "imageUrl": "data/editions/2026/1/assets/img-1785159840914-583550373.jpg"
+    }
+  ],
   "generalNews": [
     {
       "title": "Empresas Americanas Contra Tarifas ao Brasil",
