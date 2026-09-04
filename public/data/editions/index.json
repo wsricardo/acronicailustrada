@@ -1,5 +1,12 @@
 [
   {
+    "id": "2026-2",
+    "file": "2026/2/edition-2.json",
+    "title": "Edição 2",
+    "date": "Sábado, 01 de Agosto de 2026",
+    "number": 2
+  },
+  {
     "id": "2026-1",
     "file": "2026/1/edition-1.json",
     "title": "Edição 1",
