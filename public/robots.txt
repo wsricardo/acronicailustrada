@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /data/
 Disallow: /pdfs/
 Disallow: /uploads/
 Disallow: /admin/
