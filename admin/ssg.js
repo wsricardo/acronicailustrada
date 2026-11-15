@@ -18,7 +18,7 @@ function generateStaticHTML(editionData) {
         seoDescription = `Destaques da edição de ${editionData.dateStr}: ${mainArticle.title}. ${mainArticle.subtitle || ''}`.trim();
     }
     const pageTitle = `${editionData.title} - Edição ${editionData.number}`;
-    const pageUrl = `/data/editions/${editionData.baseYear}/${editionData.number}/index.html`;
+    const pageUrl = `/data/editions/${editionData.id.split('-')[0]}/${editionData.number}/index.html`;
 
     // Metadados do Cabeçalho da Data
     const now = new Date();

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderArchiveList();
     });
 
-    if (btnPrivacy) {
+    if (btnPrivacy && !btnPrivacy.classList.contains('no-modal')) {
         btnPrivacy.addEventListener('click', (e) => {
             e.preventDefault();
             privacyModal.classList.remove('hidden');

@@ -1,7 +1,10 @@
 User-agent: *
 Allow: /
-Disallow: /pdfs/
-Disallow: /uploads/
+Allow: /data/editions/
 Disallow: /admin/
+Disallow: /uploads/
+
+User-agent: Mediapartners-Google
+Allow: /
 
 Sitemap: https://www.acronicailustrada.com.br/sitemap.xml
